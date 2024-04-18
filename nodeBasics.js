@@ -1,3 +1,30 @@
+// import chalk from 'chalk';
+// import { readLinesync } from 'node:fs';
+
+function getSong() {
+    let _song = '';
+    let i = 5;
+    for (i; i > 0; i -= 1) {
+      _song += `${i} beers on the wall, you take one down and pass it around, ${
+        i - 1
+      } bottles of beer on the wall\n`;
+      if (i === 1) {
+        _song += "Hey let's get some more beer";
+      }
+    }
+  
+    return _song;
+  }
+  
+  function singSong(_song) {
+    if (!_song) throw new Error("song is '' empty, FEED ME A SONG!");
+    console.log(_song);
+  }
+  
+  const song = getSong();
+  // this will work
+  singSong(song);
+
 console.log(`Node Basics`);
 
 const {createServer} = require('node:http');
@@ -9,7 +36,7 @@ const server = createServer((req,res)=>{
 })
 
 server.listen(()=>{
-     console.log(`Request resolved and response received `);
+     console.log(`\nRequest resolved and response received `);
 })
 
 //blocking
@@ -27,10 +54,193 @@ server.listen(()=>{
 
 
 const _ = require('lodash');
+const { log } = require('node:console');
 
-const http = require('http');
-http.createServer((req,res)=>{
-    res.writeHead(200,{'Content-type':'text/plain'})
-    res.end('Response Received')
-}).listen(8081);
+// const http = require('http');
+// http.createServer((req,res)=>{
+//     res.writeHead(200,{'Content-type':'text/plain'})
+//     res.end('Response Received')
+// }).listen(8081);
 
+
+console.log(__dirname);
+console.log(__filename);
+
+// process.exit(0);
+
+console.log(`environmental variable using cli`,process.env.NAME);
+
+// node -e "console.log('Janu')"
+
+require('dotenv').config();
+
+
+console.log(`env variable using env file`, process.env.NAME);
+
+
+console.log(`My name is %s and my age is %d`,"Janu",21);
+
+console.log("%o",32,);
+
+// console.clear()
+
+console.count("ajnu")
+
+console.count(`janushreedurai`)
+console.count(`janushreedurai`);
+console.count(`janushreeduraisamy`);
+
+const fruits=["apple","oranges","oranges","banana","guava"];
+
+console.log(`first count`);
+fruits.forEach((fruit)=>console.count(fruit));
+console.log(`second count`);
+fruits.forEach((fruit)=>console.count(fruit));
+
+console.countReset('oranges');
+
+console.log(`Count Reset`);
+fruits.forEach((fruit)=>console.count(fruit));
+
+
+// const chalk = require('chalk');
+
+// console.log(chalk.magenta('hi!'));
+
+// console.log(chalk.bgMagenta('hi!'));
+
+// console.log(chalk.inverse('hi!'));
+
+// console.log(chalk.strikethrough('hi!'));
+
+// console.log(chalk.dim('hi!'));
+// console.log(chalk.bold('hi!'));
+
+
+// console.log(chalk.bold.bgYellow.magenta('Janu'));
+
+// console.log(chalk.magenta.bgGreen.italic.underline('%s'),"Shree");
+
+
+// const readLine = require('node:readline');
+
+// const rL = readLine.createInterface({input:process.stdin, output:process.stdout});
+
+// rL.question(`Please Enter your Name`,(name)=>{
+//      console.log(`Hi ${name}!!!!!`);
+//      rL.close();
+// })
+
+// const readLinesync = require('readline-sync');
+
+// const rls = readLinesync.createInterface({
+//       input:process.stdin,
+//       output:process.stdout
+// })
+
+// rls.question(`Please enter the password`,(password)=>{
+//     console.log(`Thank you`);
+//     rls.close();
+// });
+
+
+// console.log("This program demonstrates "
+// 			+ "stack trace in Node.js"); 
+// var err = new Error().stack 
+// console.log(err); 
+
+// function2 = ()=> console.trace();
+
+// function1=()=>function2();
+
+// function1()
+
+
+printFunction=()=>console.log(`Print`);
+
+callPrintFunction=()=>{
+    console.time('printFunction()');
+   //   console.log(`Inside timer`);
+    printFunction();
+    console.timeEnd('printFunction()')
+}
+
+callPrintFunction();
+
+const progressBar = require('progress');
+const bar = new progressBar('bar',{total:5});
+const timer = setInterval(()=>{
+    bar.tick();
+    console.log(`s`);
+    if(bar.complete){
+        clearInterval(timer);
+    }
+},100)
+
+
+const personDetails={
+    name:"janu",
+    age:32
+}
+
+module.exports.print = ()=>{
+    console.log(`name:${personDetails.name}, age:${personDetails.age}`);
+}
+
+
+// const person = require('./personDetails');
+
+
+function final(someInput, callback) {
+    callback(`${someInput} and terminated by executing callback `);
+  }
+  
+  function middleware(someInput, callback) {
+    return final(`${someInput} touched by middleware `, callback);
+  }
+  
+  function initiate() {
+    const someInput = 'hello this is a function ';
+    middleware(someInput, function (result) {
+      console.log(result);
+      // requires callback to `return` result
+    });
+  }
+  
+  initiate();
+  
+
+
+
+
+
+//   function getSong() {
+//     let _song = '';
+//     let i = 10;
+//     for (i; i > 0; i -= 1) {
+//       /* eslint-disable no-loop-func */
+//       setTimeout(function () {
+//         _song += `${i} beers on the wall, you take one down and pass it around, ${
+//           i - 1
+//         } bottles of beer on the wall\n`;
+//         if (i === 1) {
+//           _song += "Hey let's get some more beer";
+//         }
+//         console.log(`${_song}\n`);
+//       }, 0);
+//       /* eslint-enable no-loop-func */
+//     }
+  
+//     return _song;
+//   }
+  
+//   function singSong(_song) {
+//     // if (!_song) throw new Error("song is '' empty, FEED ME A SONG!");
+//     console.log(_song);
+//   }
+  
+//   const song = getSong();
+//   // this will not work
+//   singSong(song);
+//   // Uncaught Error: song is '' empty, FEED ME A SONG!
+  
