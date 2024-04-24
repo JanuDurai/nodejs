@@ -8,5 +8,5 @@ const print = ()=>{
 }
 
 print();
-
+ 
 module.exports ={print}
