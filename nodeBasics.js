@@ -269,26 +269,22 @@ const fs = require("fs");
 //   });
 // }).listen(8500);
 
+const httpRequestUrl = require("http");
 
-const httpRequestUrl = require('http');
+httpRequestUrl
+  .createServer((req, res) => {
+    if (req.url == "/sample") {
+      res.writeHead(200, { "Content-type": "text-plain" });
+      res.write("<h1>Sample Data</h1>");
+      res.end();
+    } else {
+      res.writeHead(200, { "Content-type": "text-plain" });
+      res.write("<h1>Data</h1>");
+      res.end();
+    }
+  })
+  .listen(8091);
 
-httpRequestUrl.createServer((req,res)=>{
-   if(req.url=='/sample'){
-     res.writeHead(200,{'Content-type':'text-plain'})
-     res.write("<h1>Sample Data</h1>")
-     res.end();
-   }
-   else{
-    res.writeHead(200,{'Content-type':'text-plain'})
-    res.write("<h1>Data</h1>")
-    res.end();
-   }
-}).listen(8091);
-
-
-
-const express = require('express');
-const app= express();
-app.get('/user',(req,res)=>{
-  
-})
+const express = require("express");
+const app = express();
+app.get("/user", (req, res) => {});
