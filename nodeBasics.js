@@ -190,7 +190,7 @@ const fs = require('node:fs');
 
 // initiate();
 
-// let a = 5;
+// let a = 5;Template Engines
 // let array = new Array(10, 20);
 // console.log(array);
 
@@ -424,6 +424,7 @@ console.log(`crypted password: ${hash}`);
 process.nextTick(()=>{
   console.log(`Executed in next iteration`);
 })
+
 console.log(`Executed in current iteration`);
 
 const zlib= require('zlib');
@@ -431,4 +432,9 @@ const createdZip = zlib.createGzip();
 const input = fs.createReadStream('textfile.txt');
 const output = fs.createWriteStream('textfile.txt.gz')
 input.pipe(createdZip).pipe(output);
+
+console.log("log");
+console.info("Information");
+console.warn("Warning message");
+console.trace("a stack trace");
 
